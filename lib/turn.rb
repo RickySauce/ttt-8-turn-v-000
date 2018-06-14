@@ -45,7 +45,8 @@ def turn(board)
   ask
   index = input_to_index(user_input)
     until valid_move?(board,index)
-      turn(board)
+      ask
+      index = input_to_index(user_input)
     end
    move(board,index,player = "X")
    display_board(board)
