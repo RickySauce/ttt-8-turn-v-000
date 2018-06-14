@@ -1,3 +1,5 @@
+require 'pry'
+
 board = [" "," "," "," "," "," "," "," "," ",]
 def display_board(board)
   puts " #{board[0]} | #{board[1]} | #{board[2] } "
@@ -31,15 +33,20 @@ def valid_move?(board,index)
   end
 end
 
+def ask
+  puts "Please enter 1-9:"
+end
+
+def user_input
+  gets.strip
+end
 
 def turn(board)
-  puts "Please enter 1-9:"
-  user_input = gets.strip
+  ask
   index = input_to_index(user_input)
-   if valid_move?(board,index) == true
-    move(board,index,player = "X")
-    display_board(board)
-  else
-    turn(board)
+    until valid_move?(board,index)
+      turn(board)
+    end
+   move(board,index,player = "X")
+   display_board(board)
   end
-end
